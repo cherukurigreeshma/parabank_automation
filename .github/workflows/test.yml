@@ -26,4 +26,4 @@ jobs:
 
       - name: Run Pytest Suite
         run: |
-          pytest tests/ -v --html=report.html --self-contained-html
+          python -m pytest tests/ -v --html=report.html --self-contained-html
