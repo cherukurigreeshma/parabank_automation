@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 def get_driver():
     options = Options()
     
-    # Enable headless mode if running in CI environment (GitHub Actions)
+    # Configure headless mode for CI environment
     if os.getenv("CI") == "true":
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
@@ -14,6 +14,6 @@ def get_driver():
         options.add_argument("--window-size=1920,1080")
         
     driver = webdriver.Chrome(options=options)
-    driver.implicitly_wait(10)
-    driver.maximize_window()
+    driver.implicitly_wait(15)  # Increased from 10 to handle CI network lag
+    driver.set_window_size(1920, 1080)
     return driver
