@@ -19,10 +19,9 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Google Chrome
+      - name: Remove Conflicting System Chromedriver
         run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
+          sudo rm -f /usr/bin/chromedriver
 
       - name: Install Dependencies
         run: |
@@ -31,4 +30,4 @@ jobs:
 
       - name: Run Pytest Suite
         run: |
-          python -m pytest tests/ -v --html=report.html --self-contained-html
+          python -m pytest tests/ -v -n auto --html=report.html --self-contained-html
